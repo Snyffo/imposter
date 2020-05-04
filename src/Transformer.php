@@ -47,17 +47,20 @@ class Transformer implements TransformerInterface
      */
     public function transform(string $target)
     {
-        if ($this->filesystem->isFile($target)) {
+        if ($this->filesystem->isFile($target) && $this->filter->isFileIncluded($target)) {
             $this->doTransform($target);
 
             return;
         }
 
-        $files = $this->filesystem->allFiles($target);
+        if($this->filter->isDirectoryInclude($target)) {
 
-        array_walk($files, function (SplFileInfo $file) {
-            $this->doTransform($file->getRealPath());
-        });
+	        $files = $this->filesystem->allFiles($target);
+
+	        array_walk($files, function (SplFileInfo $file){
+		        $this->doTransform($file->getRealPath());
+	        });
+        }
     }
 
     /**
