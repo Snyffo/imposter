@@ -13,21 +13,27 @@ class Transformer implements TransformerInterface
      */
     private $filesystem;
 
+	/**
+	 * @var FilesystemFilterInterface
+	 */
+    private $filter;
     /**
      * @var string
      */
     private $namespacePrefix;
 
-    /**
-     * Transformer constructor.
-     *
-     * @param string              $namespacePrefix
-     * @param FilesystemInterface $filesystem
-     */
-    public function __construct(string $namespacePrefix, FilesystemInterface $filesystem)
+	/**
+	 * Transformer constructor.
+	 *
+	 * @param string $namespacePrefix
+	 * @param FilesystemInterface $filesystem
+	 * @param FilesystemFilterInterface $filter
+	 */
+    public function __construct(string $namespacePrefix, FilesystemInterface $filesystem, FilesystemFilterInterface $filter)
     {
         $this->namespacePrefix = StringUtil::ensureDoubleBackwardSlash($namespacePrefix);
         $this->filesystem = $filesystem;
+	    $this->filter = $filter;
     }
 
     /**

@@ -26,7 +26,7 @@ class TransformerTest extends Unit
      */
     public function testTransformAllFilesInADirectory()
     {
-        $transformer = new Transformer('MyPlugin\Vendor', new Filesystem());
+        $transformer = new Transformer('MyPlugin\Vendor', new Filesystem(), new FilesystemFilter());
         $transformer->transform(codecept_data_dir('tmp-vendor/dummy/dummy-psr4/src'));
 
         $this->assertTransformed(codecept_data_dir('tmp-vendor/dummy/dummy-psr4/src/DummyOne.php'));
@@ -59,7 +59,7 @@ class TransformerTest extends Unit
      */
     public function testTransformTwiceHasNoEffects()
     {
-        $transformer = new Transformer('MyPlugin\Vendor', new Filesystem());
+        $transformer = new Transformer('MyPlugin\Vendor', new Filesystem(), new FilesystemFilter());
 
         $transformer->transform($this->dummyFile);
         $transformer->transform($this->dummyFile);
@@ -73,7 +73,7 @@ class TransformerTest extends Unit
      */
     public function testTransform()
     {
-        $transformer = new Transformer('MyPlugin\Vendor', new Filesystem());
+        $transformer = new Transformer('MyPlugin\Vendor', new Filesystem(),new FilesystemFilter());
 
         $transformer->transform($this->dummyFile);
 
