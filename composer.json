@@ -1,6 +1,6 @@
 {
   "name": "typisttech/imposter",
-  "description": "Wrapping all composer vendor packages inside your own namespace. Intended for WordPress plugins",
+  "description": "Wrapping all composer vendor packages inside your own namespace. Intended for WordPress plugins [loc]",
   "keywords": [
     "composer",
     "dependency",
